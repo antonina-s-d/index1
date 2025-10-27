@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Загадка</title>
+<style>
+  body{font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial; background: linear-gradient(135deg,#fff7f0,#ffeef6); color:#222; padding:20px;}
+  .card{max-width:720px;margin:40px auto;padding:24px;border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,0.08);background:#fff;}
+  h1{margin-top:0;color:#b33;}
+  p.riddle{font-size:20px;margin:18px 0 8px;}
+  .hint{color:#666;margin-bottom:12px;}
+  input[type="text"]{width:100%;padding:12px;border-radius:8px;border:1px solid #ddd;font-size:16px;}
+  button{margin-top:12px;padding:10px 16px;border-radius:8px;border:0;background:#b33;color:#fff;font-size:16px;cursor:pointer;}
+  .msg{margin-top:12px;color:#b33;}
+  footer{font-size:12px;color:#999;margin-top:14px;}
+</style>
+</head>
+<body>
+<div class="card">
+  <h1>Мала загадка від коханої</h1>
+  <p class="riddle">Не море, не небо, а в ньому можна потонути…</p>
+  <p class="hint">Введи відповідь українською (не використовуй пробіли на початку/кінці).</p>
+  <input id="ans" type="text" placeholder="Введи тут відповідь"/>
+  <button id="go">Перевірити</button>
+  <div class="msg" id="msg"></div>
+  <footer>Якщо відповідь правильна — ти побачиш сюрприз 🎥</footer>
+</div>
+<script>
+const correct = ["очі","очи"];
+document.getElementById('go').addEventListener('click', check);
+document.getElementById('ans').addEventListener('keydown', function(e){ if(e.key==='Enter') check(); });
+function normalize(s){
+  return s.trim().toLowerCase().replace(/ё/g,'е').replace(/[^а-яіїєґa-z0-9]/g,'');
+}
+function check(){
+  const v = normalize(document.getElementById('ans').value);
+  const ok = ["очі","очи"];
+  if(ok.includes(v)){
+    document.getElementById('msg').textContent = "Правильно! Зараз відкриється відео...";
+    setTimeout(()=>{ window.location.href = "https://share.icloud.com/photos/06fdg9n4ShLaM6qjAhSutw9yw"; }, 1000);
+  } else {
+    document.getElementById('msg').textContent = "Ні, це не та відповідь. Спробуй ще раз 💛";
+  }
+}
+</script>
+</body>
+</html>
